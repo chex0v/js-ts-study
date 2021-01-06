@@ -13,9 +13,11 @@ const sortStrings = (
   arr: Array<string>,
   param: TypeSort = TypeSort.ASC
 ): Array<string> =>
-  arr.slice().sort((str1, str2): number => {
-    return comparisonСoefficient(param) * compare(str1, str2);
-  });
+  arr
+    .slice()
+    .sort(
+      (str1, str2): number => comparisonСoefficient(param) * compare(str1, str2)
+    );
 
 const comparisonСoefficient = (param: TypeSort = TypeSort.ASC): number => {
   switch (param) {
