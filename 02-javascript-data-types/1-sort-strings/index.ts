@@ -9,14 +9,13 @@ enum TypeSort {
  * @param {string} [param="asc"] param - the sorting type "asc" or "desc"
  * @returns {string[]}
  */
-export function sortStrings(
+const sortStrings = (
   arr: Array<string>,
   param: TypeSort = TypeSort.ASC
-): Array<string> {
-  return arr.slice().sort((str1, str2): number => {
+): Array<string> =>
+  arr.slice().sort((str1, str2): number => {
     return comparisonСoefficient(param) * compare(str1, str2);
   });
-}
 
 const comparisonСoefficient = (param: TypeSort = TypeSort.ASC): number => {
   switch (param) {
@@ -31,3 +30,5 @@ const comparisonСoefficient = (param: TypeSort = TypeSort.ASC): number => {
 
 const compare = (str1, str2): number =>
   str1.localeCompare(str2, ["ru", "en"], { caseFirst: "upper" });
+
+export { sortStrings };
