@@ -1,16 +1,16 @@
-const createGetter = (field: string) => {
+const createGetter = (field: string): Function => {
   const path = field.split(".");
-  return (obj: Object) => {
+  return (obj: Object): any => {
     if (!Object.keys(obj).length || !path.length) {
       return undefined;
     }
-    return path.reduce((o: Object | string, field: string): any => {
-      if (o instanceof Object && o.hasOwnProperty(field)) {
-        o = o[field];
+    return path.reduce((innerObject: Object | string, field: string): any => {
+      if (innerObject instanceof Object && innerObject.hasOwnProperty(field)) {
+        innerObject = innerObject[field];
       } else {
-        o = undefined;
+        innerObject = undefined;
       }
-      return o;
+      return innerObject;
     }, obj);
   };
 };
